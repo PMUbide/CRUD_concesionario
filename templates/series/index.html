@@ -1,0 +1,79 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+
+
+<div class="row">
+
+    <div class="col-md-5">
+
+        <div class="">
+
+            {% include 'partials/_message.html' %}
+
+
+            <form action="/series/new" method="POST" class="card p-2 bg-dark text-light">
+                <div class="mb-3">
+                    <label for="nombre">Escribe el nombre </label>
+                    <input class="form-control rounded-0 bg-dark border-0 text-white" type="text" name="nombre" placeholder="Introduce tu nombre" />
+                </div>
+
+
+                <div class="mb-3">
+                    <label for="nombre">Elige la marca </label>
+                    <!-- <input class="form-control rounded-0 bg-dark border-0 text-white" type="text" name="nombre" placeholder="Introduce tu nombre" /> -->
+                    <select class="form-control"  name="marca_id" required>
+                        {% for marca in marcas %}
+                            <option value='{{marca.id}}'>{{marca.nombre}}</option>
+                        {% endfor %}    
+                    </select>
+                </div>
+
+
+                
+
+
+               
+              
+                <button class="btn-primary">Save</button>
+              </form>
+        </div>
+
+          
+    </div>
+
+    <div class="col-md-7">
+                
+       
+        <!--MOTOR que usa Flask para esto es NINJA, usa formato liquid-->
+        {% for serie in series %}
+
+            <div class="card mb-1 text-white bg-dark">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <h5>{{serie.nombre}}</h5>
+
+
+                        <p class="text-danger"> {{serie.marca}}</p>
+                        <div>
+                            <!--Función para llamar directamente a la función update del blueprint-->
+                            <a class="btn btn-dark bg-black btn-sm rounded-0" href="">Update</a>
+                    
+                            <a class="btn btn-danger btn-sm rounded-0" href="">Delete</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+        {% endfor %}
+  
+    </div>
+
+
+
+</div>
+
+
+
+{% endblock %}
