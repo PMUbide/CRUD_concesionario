@@ -48,6 +48,9 @@ def search():
 
     matricula = request.form["matricula2"]
 
+    if matricula == '':
+        return redirect(url_for('vehiculos.index'))
+
     series = Serie.query.all()
     results = []
     encontrado = Vehiculo.query.filter_by(matricula=matricula).first()
