@@ -3,6 +3,7 @@ from utils.db import db
 
 
 class Vehiculo(db.Model):
+    __searchable__ = ['matricula']
     id = db.Column(db.Integer, primary_key=True)
     matricula = db.Column(db.String(100))
     color = db.Column(db.String(100))

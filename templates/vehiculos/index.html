@@ -2,7 +2,17 @@
 
 {% block body %}
 
-
+<div class="row justify-content-center">
+    <div class="col-5 ">
+        <form action="/vehiculos/busqueda" method="POST" class=" bg-ligth text-dark">
+            <div class="mb-3 row">
+                <label for="matricula2" class="col">Busqueda por matrícula </label>
+                <input class="form-control col text-white" type="text" name="matricula2" placeholder="Introduce matrícula" />
+                <button class="btn btn-secondary col-2">Buscar</button>
+            </div>
+        </form>    
+    </div>
+</div>
 
 <div class="row">
 
@@ -45,27 +55,39 @@
 
     <div class="col-md-7">
                 
-       
-        <!--MOTOR que usa Flask para esto es NINJA, usa formato liquid-->
-        {% for v in vehiculos %}
+        {% if vehiculos|length > 0 %}
+            <!--MOTOR que usa Flask para esto es NINJA, usa formato liquid-->
+            {% for v in vehiculos %}
+
+                <div class="card mb-1 text-white bg-dark">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <h5>{{v.serie}}</h5>
+
+                            <p class="text-danger"> {{v.matricula}}</p>
+                            <div>
+                                <!--Función para llamar directamente a la función update del blueprint-->
+                                <a class="btn btn-dark bg-black btn-sm rounded-0" href="">Update</a>
+                        
+                                <a class="btn btn-danger btn-sm rounded-0" href="">Delete</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        
+            {% endfor %}
+
+        {% else %}    
 
             <div class="card mb-1 text-white bg-dark">
                 <div class="card-body">
                     <div class="d-flex justify-content-between">
-                        <h5>{{v.serie}}</h5>
-
-                        <p class="text-danger"> {{v.matricula}}</p>
-                        <div>
-                            <!--Función para llamar directamente a la función update del blueprint-->
-                            <a class="btn btn-dark bg-black btn-sm rounded-0" href="">Update</a>
-                    
-                            <a class="btn btn-danger btn-sm rounded-0" href="">Delete</a>
-                        </div>
+                        <h5 class="text-white">No hay resultados</h5>
                     </div>
                 </div>
             </div>
-    
-        {% endfor %}
+
+        {% endif %}
   
     </div>
 

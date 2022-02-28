@@ -41,3 +41,18 @@ def add():
 
     # Función de flask para hacer redirecciones 
     return redirect(url_for('marcas.index'))
+
+
+@vehiculos.route("/vehiculos/busqueda", methods=["POST"])
+def search():
+
+    matricula = request.form["matricula2"]
+
+    series = Serie.query.all()
+    results = []
+    encontrado = Vehiculo.query.filter_by(matricula=matricula).first()
+    if encontrado != None:
+        results.append(Vehiculo.query.filter_by(matricula=matricula).first())
+
+    # return redirect(url_for('vehiculos.index'))
+    return render_template("vehiculos/index.html", series=series, vehiculos= results)
