@@ -30,8 +30,6 @@ def add():
     marca = Marca.query.get(marca_id)
     marca.series.append(new_serie)
 
-    new_serie.marca
-
 
     db.session.add(new_serie)
 
@@ -43,3 +41,38 @@ def add():
 
     # Función de flask para hacer redirecciones 
     return redirect(url_for('marcas.index'))
+
+
+@series.route("/series/update/<id>", methods=["POST", "GET"])
+def update(id):
+    serie = Serie.query.get(id)
+    marcas = Marca.query.all()
+
+    if request.method == 'POST':
+        serie.nombre = request.form["nombre"]
+        valor = request.form["marca_id"]
+
+        if(valor != 'None'):
+            serie.marca_id = request.form["marca_id"]
+        
+
+        db.session.commit()
+        flash("Serie updateado satisfactoriamente!")
+        return redirect(url_for('series.index'))
+
+    return render_template('series/update.html', serie=serie, marcas=marcas)
+
+# Espera un id 
+@series.route("/series/delete/<id>", methods=["POST", "GET"])
+def delete(id):
+
+    serie = Serie.query.get(id)
+
+    if request.method == 'POST':
+        db.session.delete(serie)
+        db.session.commit()
+        flash("Serie borrado satisfactoriamente!")
+        return redirect(url_for('series.index'))
+
+    return render_template('series/delete.html', serie=serie)
+    

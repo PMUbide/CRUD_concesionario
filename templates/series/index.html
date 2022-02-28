@@ -58,9 +58,10 @@
                         <p class="text-danger"> {{serie.marca}}</p>
                         <div>
                             <!--Función para llamar directamente a la función update del blueprint-->
-                            <a class="btn btn-dark bg-black btn-sm rounded-0" href="">Update</a>
+                            <a class="btn btn-dark bg-black btn-sm rounded-0" href="{{ url_for('series.update',  id=serie.id) }}">Update</a>
                     
-                            <a class="btn btn-danger btn-sm rounded-0" href="">Delete</a>
+                            <a class="btn btn-danger btn-sm rounded-0" href="{{ url_for('series.delete',  id=serie.id) }}">Delete</a>
+
                         </div>
                     </div>
                 </div>

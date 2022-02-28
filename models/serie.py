@@ -7,8 +7,8 @@ class Serie(db.Model):
     nombre = db.Column(db.String(100))
     #specify which property is the foreign key in a relationship
     marca_id = db.Column(db.Integer, db.ForeignKey('marca.id'))
-    #Relación con tabla-child 
-    vehiculos = db.relationship("Vehiculo", backref="serie")
+    #Relación con tabla-child - borrará todos los vehiculos de la serie al borrar la serie
+    vehiculos = db.relationship("Vehiculo", backref="serie", cascade="all, delete-orphan")
 
     def __init__(self, nombre):
         self.nombre = nombre

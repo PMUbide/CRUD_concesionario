@@ -5,22 +5,26 @@
 
 <h1 class="text-white">Update</h1>
 
-<form action="/update/{{serie.id}}" method="POST" class="card p-2 bg-dark text-light">
+<form action="/series/update/{{serie.id}}" method="POST" class="card p-2 bg-dark text-light">
 
     <div class="mb-3">
-        <label for="fullname">Introduce nombre</label>
-        <input class="form-control rounded-0 bg-white border-0 text-black" type="text" name="fullname" placeholder="Introduce tu nombre" value="{{contact.fullName}}" />
+        <h2 id="marca">{{serie.marca}}</h2>
+        <label for="nombre">Introduce nombre</label>
+        <input class="form-control rounded-0 bg-white border-0 text-black" type="text" name="nombre" placeholder="Introduce tu nombre" value="{{serie.nombre}}" />
+
     </div>
 
     <div class="mb-3">
-        <label for="email">Introduce email</label>
-        <input class="form-control rounded-0 bg-white border-0 text-black" type="text" name="email" placeholder="Inroduce tu mail" value="{{contact.email}}" />
+        <label for="marca_id">Introduce Marca</label>
+        <select class="form-control"  name="marca_id" required >
+            <option value="None" selected >Select an Option</option>
+            {% for marca in marcas %}
+                <option  value='{{marca.id}}' >{{marca.nombre}}</option>
+            {% endfor %}    
+        </select>
+       
     </div>
 
-    <div class="mb-3">
-        <label for="phone">Intorduce email</label>
-        <input class="form-control rounded-0 bg-white border-0 text-black" type="text" name="phone" placeholder="Inroduce tu telefono" value="{{contact.phone}}" />
-    </div>
 
     <button class="btn btn-primary bg-black btn-sm rounded-0" >Save</button>
 
