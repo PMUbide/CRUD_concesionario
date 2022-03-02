@@ -46,16 +46,26 @@ def add():
 @vehiculos.route("/vehiculos/busqueda", methods=["POST"])
 def search():
 
-    matricula = request.form["matricula2"]
+    matricula2 = request.form["matricula2"]
+    serie_busqueda = request.form["serie_busqueda"]
 
-    if matricula == '':
+
+
+    if matricula2 == '' and serie_busqueda == 'None':
         return redirect(url_for('vehiculos.index'))
+
+    
+    todos = Vehiculo.query.filter(Vehiculo.matricula.like(matricula2))
+
+    if(serie_busqueda != 'None'):
+        todos = Vehiculo.query.filter(Vehiculo.serie_id.like(serie_busqueda)).all()
+
 
     series = Serie.query.all()
     results = []
-    encontrado = Vehiculo.query.filter_by(matricula=matricula).first()
-    if encontrado != None:
-        results.append(Vehiculo.query.filter_by(matricula=matricula).first())
+    
+    if todos != None:
+        results.append(todos)
 
     # return redirect(url_for('vehiculos.index'))
     return render_template("vehiculos/index.html", series=series, vehiculos= results)

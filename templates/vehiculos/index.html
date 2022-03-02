@@ -8,6 +8,14 @@
             <div class="mb-3 row">
                 <label for="matricula2" class="col text-light">Busqueda por matrícula </label>
                 <input class="form-control col text-black" type="text" name="matricula2" placeholder="Introduce matrícula" />
+                
+                <select class="form-control"  name="serie_busqueda" required>
+                    <option value="None" selected>Select an Option</option>
+                    {% for serie in series %}
+                        <option value='{{serie.id}}'>{{serie.nombre}}</option>
+                    {% endfor %}    
+                </select>
+                
                 <button class="btn btn-secondary col-2">Buscar</button>
             </div>
         </form>    
