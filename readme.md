@@ -1,10 +1,12 @@
-<https://www.youtube.com/watch?v=BP3D03CYFHA&ab_channel=FaztCode>
+Tutorial seguido: <https://www.youtube.com/watch?v=BP3D03CYFHA&ab_channel=FaztCode>
 
 # Crear entorno virtual
 Instalar para crear entornovistuales -> `pip install virtualenv`
 
 Despues con python crear el entorno-> `py -m venv .venv`
+
 En la terminal de VSC tiene que aparecer el entorno virtual. (Se puede configurar en VSC: "tecla F1", "Python: Select Interpreter", elegir el de .venv)
+
 En VSC usar el mismo formatter en el proyecto: File -> Preferences -> Settings -> Extensions -> Ptython y Formatting: Provider = black
 
 # Instalar módulo FLASK
@@ -14,6 +16,9 @@ Instalar los módulos necesarios
 
 o utilizar comando para que instale lo necesario: 
 `pip install -r requirements.txt`
+
+
+Correr `index.py` para levantar el proyecto.
 
 
 
