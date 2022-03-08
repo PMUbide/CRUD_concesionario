@@ -1,0 +1,20 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+<h1 class="text-white">Update</h1>
+
+<form action="/marcas/update/{{marca.id}}" method="POST" class="card p-2 bg-dark text-light">
+    {% include 'partials/_message.html' %}
+    <div class="mb-3">
+        <label for="nombre">Introduce nombre</label>
+        <input class="form-control rounded-0 bg-white border-0 text-black" type="text" name="nombre" placeholder="Introduce tu nombre" value="{{marca.nombre}}" />
+
+    </div>
+
+    <button class="btn btn-primary bg-black btn-sm rounded-0">Save</button>
+
+   
+</form>
+
+{% endblock %}

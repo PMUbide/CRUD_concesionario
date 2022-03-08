@@ -7,6 +7,17 @@ from utils.db import db
 # Linea enroutador. Para llamarlo desde otras clases
 marcas = Blueprint("marcas", __name__)
 
+def arreglaNombre(nombre):
+    # Quitar espacios despues
+    name = ''
+    # Comprobar si tiene espacios el nombre, y gestionarlos por separado las mayusculas
+    nombre_separado = nombre.split(" ")
+    for n in nombre_separado:
+        n = f'{n[0:1].capitalize()}{n[1:].lower()}'
+        name += f'{n} '
+    # Quitarle espacios por detrás    
+    name = name.rstrip()    
+    return name
 
 
 @marcas.route("/")
@@ -23,20 +34,11 @@ def add():
     nombre = request.form["nombre"]
     #Comprobar que no exista anteriormente
     try:
+        # If para evitar que cree un registro vacío
         if(nombre != ''):
-            # Quitar espacios despues
-            
-            name = ''
-            # Comprobar si tiene espacios el nombre, y gestionarlos por separado las mayusculas
-            nombre_separado = nombre.split(" ")
-            for n in nombre_separado:
-                n = f'{n[0:1].capitalize()}{n[1:].lower()}'
-                name += f'{n} '
-            name = name.rstrip()    
-
-
+            nombre = arreglaNombre(nombre)
             # Nuevo objeto para guardar
-            new_marca = Marca(name)
+            new_marca = Marca(nombre)
             # Funciones para guardar en la base 
             db.session.add(new_marca)
             # Ahora se acaba con la conexión y se hace commit
@@ -69,14 +71,20 @@ def update(id):
     marca = Marca.query.get(id)
 
     if request.method == 'POST':
-        
+        nombre = request.form["nombre"]
+        if(nombre != ""):
+            nombre = arreglaNombre(nombre)
+            # Comprobar si existe ese nombre ya
+            records = db.session.query(Marca).filter_by(nombre=nombre).first()
+            #Si no existe hará el update
+            if(records == None):
+                marca.nombre = nombre
+                db.session.commit()
+                flash("Marca updateado satisfactoriamente!")
+                return redirect(url_for('marcas.index'))
+            else:
+                flash("Error al hacer update elemento ya existe")
+    return render_template('marcas/update.html', marca=marca)
 
-        Marca.nombre = request.form["nombre"]
-        valor = request.form["marca_id"]
 
 
-        db.session.commit()
-        flash("Serie updateado satisfactoriamente!")
-        return redirect(url_for('series.index'))
-
-    return render_template('series/update.html', marca=marca)
