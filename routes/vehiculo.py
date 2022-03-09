@@ -155,10 +155,10 @@ def update(id):
             # Comprobar si existe ese registro 
             records = db.session.query(Vehiculo).filter_by(matricula=matricula).first()
             #Comprobar si no está vacío
-            if(records == None):
+            if(records == None or records.id == int(id)):
                 vehiculo.matricula = matricula
                 vehiculo.color = color
-                vehiculo.sere_id = serie_id
+                vehiculo.serie_id = int(serie_id)
                 db.session.commit()
                 flash("Vehiculo updateado satisfactoriamente!")
                 return redirect(url_for('vehiculos.index'))
