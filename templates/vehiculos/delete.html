@@ -1,0 +1,26 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+<h1 class="text-white">Delete</h1>
+
+<form  action="/vehiculos/delete/{{vehiculo.id}}" method="POST" class="card p-2 bg-dark text-light">
+
+    <div class="mb-3">
+        <h2 id="marca">{{vehiculo.serie}}</h2>
+        <h2 class=" bg-white border-0 text-black" >{{vehiculo.matricula}}</h2>
+        <h2 class=" bg-white border-0 text-black" >{{vehiculo.color}}</h2>
+        
+    </div>
+    
+   
+    <h3> ¿Seguro quieres borrar el elemento? </h3>
+
+    <button class="btn btn-primary bg-black btn-sm rounded-0"  >SI</button>
+    
+                    
+    <a class="btn btn-danger btn-sm rounded-0" href="{{ url_for('vehiculos.index') }}">NO</a>
+
+</form>
+
+{% endblock %}

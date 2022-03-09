@@ -3,22 +3,33 @@
 {% block body %}
 
 <div class="row justify-content-center">
-    <div class="col-5 ">
-        <form action="/vehiculos/busqueda" method="POST" class=" bg-ligth text-dark">
+    <div class="col-6 ">
+        <form action="/vehiculos/busqueda_matricula" method="POST" class=" bg-ligth text-dark">
             <div class="mb-3 row">
                 <label for="matricula2" class="col text-light">Busqueda por matrícula </label>
                 <input class="form-control col text-black" type="text" name="matricula2" placeholder="Introduce matrícula" />
                 
-                <select class="form-control"  name="serie_busqueda" required>
-                    <option value="None" selected>Select an Option</option>
-                    {% for serie in series %}
-                        <option value='{{serie.id}}'>{{serie.nombre}}</option>
-                    {% endfor %}    
-                </select>
-                
                 <button class="btn btn-secondary col-2">Buscar</button>
             </div>
+           
+            
         </form>    
+
+        <form action="/vehiculos/busqueda_serie" method="POST" class=" bg-ligth text-dark">
+            <div class="mb-3 row">
+                <label for="serie_busqueda" class="col text-light">Busqueda por tipo de serie </label>
+                <select class="form-control col"  name="serie_busqueda" required>
+                    <option value="None" selected>Select an Option</option>
+                    {% for serie in series %}
+                        <option value='{{serie.id}}'>{{serie.nombre}} - {{serie.marca}}</option>
+                    {% endfor %}    
+                </select>
+                <button class="btn btn-secondary col-2">Buscar</button>
+
+            </div>
+
+        </form>
+
     </div>
 </div>
 
@@ -47,7 +58,7 @@
                     <!-- <input class="form-control rounded-0 bg-dark border-0 text-white" type="text" name="nombre" placeholder="Introduce tu nombre" /> -->
                     <select class="form-control"  name="serie_id" required>
                         {% for serie in series %}
-                            <option value='{{serie.id}}'>{{serie.nombre}}</option>
+                            <option value='{{serie.id}}'>{{serie.nombre}} - {{serie.marca}} </option>
                         {% endfor %}    
                     </select>
                 </div>
@@ -68,16 +79,17 @@
             {% for v in vehiculos %}
 
                 <div class="card mb-1 text-white bg-dark">
-                    <div class="card-body">
+                    <div class="card-body" style="background-color: {{v.color}};">
                         <div class="d-flex justify-content-between">
                             <h5>{{v.serie}}</h5>
+                            <h5>{{v.serie.marca}}</h5>
 
                             <p class="text-danger"> {{v.matricula}}</p>
                             <div>
                                 <!--Función para llamar directamente a la función update del blueprint-->
-                                <a class="btn btn-dark bg-black btn-sm rounded-0" href="">Update</a>
+                                <a class="btn btn-dark bg-black btn-sm rounded-0" href="{{ url_for('vehiculos.update',  id=v.id) }}">Update</a>
                         
-                                <a class="btn btn-danger btn-sm rounded-0" href="">Delete</a>
+                                <a class="btn btn-danger btn-sm rounded-0" href="{{ url_for('vehiculos.delete',  id=v.id) }}">Delete</a>
                             </div>
                         </div>
                     </div>
