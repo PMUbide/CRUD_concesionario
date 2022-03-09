@@ -1,5 +1,5 @@
 # Importar el framework
-from flask import Flask
+from flask import Flask, render_template
 
 # Se crea para instanciar la bbdd
 from flask_sqlalchemy import SQLAlchemy
@@ -19,7 +19,14 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 # Recibe la app, y se instnacia como una bd
 db = SQLAlchemy(app)
 
+@app.errorhandler(404)
+def page_not_found(e):
+    # note that we set the 404 status explicitly
+    return render_template('404.html'), 404
 
 app.register_blueprint(series)
 app.register_blueprint(marcas)
 app.register_blueprint(vehiculos)
+
+app.register_error_handler(404, page_not_found)
+
