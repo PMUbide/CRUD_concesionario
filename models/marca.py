@@ -1,6 +1,5 @@
 # De util.db importa el db para pasarle el modelo.
 from utils.db import db
-from sqlalchemy.sql.expression import func
 
 class Marca(db.Model):
     id = db.Column(db.Integer, primary_key=True)

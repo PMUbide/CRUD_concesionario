@@ -7,6 +7,9 @@
 
 <form action="/series/update/{{serie.id}}" method="POST" class="card p-2 bg-dark text-light">
 
+    {% include 'partials/_message.html' %}
+
+
     <div class="mb-3">
         <h2 id="marca">{{serie.marca}}</h2>
         <label for="nombre">Introduce nombre</label>
