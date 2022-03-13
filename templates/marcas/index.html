@@ -4,44 +4,45 @@
 
 
 
-<div class="row">
+<div class="row justify-content-center" style="margin-top: 25px;">
 
-    <div class="col-md-5">
+    <div class="col-6">
 
-        <div class="">
+    
 
-            {% include 'partials/_message.html' %}
-
-
-            <form action="marcas/new" method="POST" class="card p-2 bg-dark text-light">
-                <div class="mb-3">
-                    <label for="nombre">Escribe el nombre </label>
-                    <input class="form-control rounded-0 bg-dark border-0 text-white" type="text" name="nombre" placeholder="Introduce tu nombre" />
+        <form id="formularioMarcas" action="marcas/new" method="POST" class="card p-2 bg-transparent text-light  ">
+            <div class="row">
+                <div class="col">
+                    <div class="rounder-pill">
+                        <input class="form-control rounded-0 bg-dark border-0 text-white rounded-pill" type="text" name="nombre" placeholder="Introduce tu nombre">
+                    </div>
                 </div>
-              
-                <button class="btn-primary">Save</button>
-              </form>
-        </div>
+                <div class="col-md-3">
+                    <button class="btn-primary  rounded-pill" style="width: 100px;height: 35px;">Crear</button>
+                </div>
+            </div>
+        </form>
 
-          
+        <!--Comprueba si hay una variable flash con mensage!-->
+        {% include 'partials/_message.html' %}
     </div>
 
-    <div class="col-md-7">
-                
+    <div class="row justify-content-center">
+
+        
         <!--MOTOR que usa Flask para esto es NINJA, usa formato liquid-->
         {% for marca in marcas %}
 
-            <div class="card mb-1 text-white bg-dark">
+            <div class="card mb-1 text-white bg-dark" style="width: 800px;">
                 <div class="card-body">
                     <div class="d-flex justify-content-between">
                         <h5><u>{{marca.nombre}}</u></h5>
 
-                        
+
                         <div>
                             <!--Función para llamar directamente a la función update del blueprint-->
-                            <a class="btn btn-dark bg-black btn-sm rounded-0" href="/marcas/update/{{marca.id}}">Update</a>
-                            
-                            <a class="btn btn-danger btn-sm rounded-0" href="/marcas/delete/{{marca.id}}">Delete</a>
+                            <a class="fas fa-wrench text-primary" href="/marcas/update/{{marca.id}}"></a>
+                            <a class="fas fa-trash-alt text-danger" href="/marcas/delete/{{marca.id}}"></a>
                         </div>
                     </div>
                     <ul class="navbar-nav ms-auto pl-2">
@@ -51,9 +52,9 @@
                     </ul>
                 </div>
             </div>
-    
+
         {% endfor %}
-  
+
     </div>
 
 
