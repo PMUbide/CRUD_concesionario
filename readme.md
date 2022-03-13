@@ -39,3 +39,19 @@ Para evitar tener que cancelar el servidor y volver a levantar con los cambios s
 ## Crear modelo BBDD
 Importar flask-sqlalchemy, módulo que añade sqlAlchemy a la app de Flask: `pip install Flask-SQLAlchemy`
 En **utils** generar la clase **db.py**, en models está la clase para generar la tabla de la bbdd. Cuando arranque la app se ejecutará las tablas.
+
+
+## DOCKER
+
+Deploy en AWS de los recursos después de hacer build
+`sam deploy --capabilities CAPABILITY_NAMED_IAM`
+
+
+Comando: `pip freeze > requirements.txt` genera los requerimientos de librerías para docker como en el proyecto
+
+`docker build -t flask_crud ./docker`
+
+`docker image build -t flask_docker .`
+
+
+Hacer RUN en el puerto: `docker run -p 5000:5000 -d flask_docker`
