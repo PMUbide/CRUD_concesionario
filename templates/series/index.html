@@ -2,54 +2,56 @@
 
 {% block body %}
 
+<script src="https://kit.fontawesome.com/2e7e2c30ba.js" crossorigin="anonymous"></script>
 
 
-<div class="row">
-
-    <div class="col-md-5">
-
-        <div class="">
-
-            {% include 'partials/_message.html' %}
 
 
-            <form action="/series/new" method="POST" class="card p-2 bg-dark text-light">
-                <div class="mb-3">
-                    <label for="nombre">Escribe el nombre </label>
-                    <input class="form-control rounded-0 bg-dark border-0 text-white" type="text" name="nombre" placeholder="Introduce tu nombre" />
-                </div>
+<div class="row mt-2 justify-content-center">
+
+    <div class="col-md-6 ">
 
 
-                <div class="mb-3">
-                    <label for="nombre">Elige la marca </label>
-                    <!-- <input class="form-control rounded-0 bg-dark border-0 text-white" type="text" name="nombre" placeholder="Introduce tu nombre" /> -->
-                    <select class="form-control"  name="marca_id" required>
-                        {% for marca in marcas %}
-                            <option value='{{marca.id}}'>{{marca.nombre}}</option>
-                        {% endfor %}    
-                    </select>
-                </div>
+        {% include 'partials/_message.html' %}
 
 
-                
+        <form action="/series/new" method="POST" class="card p-2 bg-dark text-light text-center ">
+            <div class="mb-3 ">
+                <label for="nombre text-center">Escribe el nombre </label>
+                <input class="form-control rounded-0 bg-dark border-0 text-white text-center" type="text" name="nombre" placeholder="Introduce tu nombre" />
+            </div>
 
 
-               
-              
-                <button class="btn-primary">Save</button>
-              </form>
-        </div>
+            <div class="mb-3 ">
+                <label for="nombre">Elige la marca </label>
+                <!-- <input class="form-control rounded-0 bg-dark border-0 text-white" type="text" name="nombre" placeholder="Introduce tu nombre" /> -->
+                <select class="form-control text-center rounded-pill w-50" style="margin: auto;" name="marca_id" required>
+                    {% for marca in marcas %}
+                        <option value='{{marca.id}}'>{{marca.nombre}}</option>
+                    {% endfor %}    
+                </select>
+            </div>
 
+            
+            <button class="btn-primary rounded-pill">Save</button>
+            </form>
+    
+        
+              <br>
           
     </div>
 
-    <div class="col-md-7">
+
+    
+    
+
+    <div class="col-md-12">
                 
        
         <!--MOTOR que usa Flask para esto es NINJA, usa formato liquid-->
         {% for serie in series %}
 
-            <div class="card mb-1 text-white bg-dark">
+            <div class="card mb-1 text-white bg-dark ">
                 <div class="card-body">
                     <div class="d-flex justify-content-between">
                         <h5>{{serie.nombre}}</h5>
@@ -58,10 +60,14 @@
                         <p class="text-danger"> {{serie.marca}}</p>
                         <div>
                             <!--Función para llamar directamente a la función update del blueprint-->
-                            <a class="btn btn-dark bg-black btn-sm rounded-0" href="{{ url_for('series.update',  id=serie.id) }}">Update</a>
-                    
-                            <a class="btn btn-danger btn-sm rounded-0" href="{{ url_for('series.delete',  id=serie.id) }}">Delete</a>
-
+                           
+                            <a class="fas fa-wrench text-primary" href="{{ url_for('series.update',  id=serie.id) }}"></a>
+                            <br>    
+                            <a class="fas fa-trash-alt text-danger" href="{{ url_for('series.delete',  id=serie.id) }}"></a>
+                            
+                           
+                            
+                          
                         </div>
                     </div>
                 </div>
