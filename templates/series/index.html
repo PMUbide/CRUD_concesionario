@@ -4,8 +4,7 @@
 
 <script src="https://kit.fontawesome.com/2e7e2c30ba.js" crossorigin="anonymous"></script>
 
-
-
+<link rel="stylesheet" href="/static/css/paginas_tablas.css">
 
 <div class="row mt-2 justify-content-center">
 
@@ -16,6 +15,11 @@
 
 
         <form action="/series/new" method="POST" class="card p-2 bg-dark text-light text-center ">
+
+            <div class="MB-2 border ">
+                <p class="align-self-center">CREAR SERIE</p>
+            </div>
+
             <div class="mb-3 ">
                 <label for="nombre text-center">Escribe nombre </label>
                 <input class="form-control rounded-0 bg-dark border-0 text-white text-center" type="text" name="nombre" placeholder="Introduce nombre" />
@@ -48,33 +52,42 @@
 
     <div class="col-md-12">
                 
-       
+        <table class="table table-hover text-center table-dark">
+            <tr>
+                <th>Nombre Serie</th>
+                <th>Marca</th>
+                <th>Actualizar registro</th>
+                <th>Borrar registro</th> 
+            </tr>
+
+
         <!--MOTOR que usa Flask para esto es NINJA, usa formato liquid-->
         {% for serie in series %}
 
-            <div class="card mb-1 text-white bg-dark ">
-                <div class="card-body">
-                    <div class="d-flex justify-content-between">
-                        <h5>{{serie.nombre}}</h5>
+        <tr>
+            <td> <span class="">{{serie.nombre}}</span> </td>
+
+            <td><span >{{serie.marca}}</span></td>
+
+            <td><a href="{{ url_for('series.update',  id=serie.id) }}"><i class="bg-primary text-dark fas fa-wrench "></i></a></td>
+
+            <td><a  href="{{ url_for('series.delete',  id=serie.id) }}"><i class="fas fa-trash-alt bg-danger text-dark"></i></a></td>
 
 
-                        <p class="text-danger"> {{serie.marca}}</p>
-                        <div>
-                            <!--Función para llamar directamente a la función update del blueprint-->
-                           
-                            <a class="fas fa-wrench text-primary" href="{{ url_for('series.update',  id=serie.id) }}"></a>
-                            <br>    
-                            <a class="fas fa-trash-alt text-danger" href="{{ url_for('series.delete',  id=serie.id) }}"></a>
-                            
-                           
-                            
-                          
-                        </div>
-                    </div>
-                </div>
-            </div>
-    
+
+
+        </tr>
+
+
+
+
+
+
+
+
         {% endfor %}
+
+        </table>
   
     </div>
 

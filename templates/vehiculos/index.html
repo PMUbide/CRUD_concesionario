@@ -2,6 +2,7 @@
 
 {% block body %}
 
+<link href="/static/css/paginas_tablas.css" rel="stylesheet">
 
 
 <script src="https://kit.fontawesome.com/2e7e2c30ba.js" crossorigin="anonymous"></script>
@@ -15,7 +16,7 @@
 <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/ui-lightness/jquery-ui.css"
     rel="stylesheet" type="text/css" />  
 
-<div class="row justify-content-center">
+<div class="row justify-content-center mt-3">
 
     <!-- empieza formulario -->
     <div class="col-3 mt-2">
@@ -23,6 +24,9 @@
         {% include 'partials/_message.html' %}
 
         <form action="/vehiculos/new" method="POST" class="card p-2 bg-dark text-light text-center">
+            <div class="mb-3 border ">
+                <p class="align-self-center">CREAR VEHÍCULO</p>
+            </div>
             <div class="mb-3">
                 <label for="matricula">Escribe la matrícula </label>
                 <input class="form-control rounded-0 bg-dark border-0 text-white text-center rounded-pill" type="text" name="matricula" placeholder="Introduce matrícula" />
@@ -80,38 +84,39 @@
 
 <!-- Empieza el listado de vehículos -->
 <div class="row mt-2">
-
-    <div class="col-md-12 ">
-                
-        {% if vehiculos|length > 0 %}
+    
+    {% if vehiculos|length > 0 %}
+    <table class="table table-hover text-center table-dark">
+        <tr>
+            <th>Matrícula</th>
+            <th>Color</th>
+            <th>Serie</th>
+            <th>Marca</th>
+            <th>Modificar Registro</th>
+            <th>Borrar Registro</th>
+        </tr>
             <!--MOTOR que usa Flask para esto es NINJA, usa formato liquid-->
             {% for v in vehiculos %}
 
-                <div class="card mb-1 text-white bg-dark">
-                    <div class="card-body" style="background-color: {{v.color}};">
-                        <div class="d-flex justify-content-between">
-                            <h5 class="bg-white text-dark"> {{v.matricula}}</h5>
-                            <h5 class="bg-white text-dark"> {{v.color}}</h5>
-                            <h5  class="bg-white text-dark">{{v.serie}}</h5>
-                            <h5  class="bg-white text-dark">{{v.serie.marca}}</h5>
-                            
+                <tr>
+                    <td> <span class="">{{v.matricula}}</span> </td>
 
-                            
-                            <div>
-                                <!--Función para llamar directamente a la función update del blueprint-->
-                                <a class="bg-white text-dark fas fa-wrench " href="{{ url_for('vehiculos.update',  id=v.id) }}"></a>
-                                <br>    
-                                <a class="fas fa-trash-alt bg-white text-dark" href="{{ url_for('vehiculos.delete',  id=v.id) }}"></a>
-                            
-                            
-                            </div>
-                        </div>
-                    </div>
-                </div>
-        
+
+                    <td style="background-color:{{v.color}};"><span class="fondo text-dark"> {{v.color}}</span></td>
+
+                    <td><span >{{v.serie}}</span></td>
+
+                    <td><span  >{{v.serie.marca}}</span></td>
+
+                    <td><a class="" href="{{ url_for('vehiculos.update',  id=v.id) }}"><i class="bg-primary text-dark fas fa-wrench"></i></a></td>
+
+                    <td><a class="" href="{{ url_for('vehiculos.delete',  id=v.id) }}"><i class="fas fa-trash-alt bg-danger text-dark"></i></a></td>
+
+                </tr>
+
             {% endfor %}
 
-        {% else %}    
+        {% else %}
 
             <div class="card mb-1 text-white bg-dark">
                 <div class="card-body">
@@ -122,16 +127,15 @@
             </div>
 
         {% endif %}
-  
-    </div>
+
+    </table>
 
 
 
 </div>
 
 
-
-<script>
+<!-- <script>
     $( function() {
       var availableTags = [
           {% for matriculas in vehiculos %}
@@ -142,7 +146,7 @@
         source: availableTags
       });
     } );
-</script>
+</script> -->
 
 
 
