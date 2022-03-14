@@ -1,0 +1,27 @@
+.fondo{
+    background-color: rgba(255, 255, 255, 0.562);
+    border-radius: 5px;
+
+}
+th{
+    font-size: 20px;
+}
+.table{
+    width: 90%;
+    margin:auto;
+}
+
+.fas{
+    font-size: 20px;
+}
+
+td a {
+    width: 100%;
+    display: block;
+    background-color: rgba(0, 0, 0, 0);
+    transition: background-color 0.5s;
+}
+
+td a:hover{
+    background-color: rgba(0, 0, 0, 0.308);
+}
