@@ -2,9 +2,9 @@
 
 {% block body %}
 
-<h1 class="text-white ">Delete</h1>
+<h1 class="text-white">Delete Serie</h1>
 
-<form  action="/series/delete/{{serie.id}}" method="POST" class="card p-2 bg-dark text-light bg-transparent">
+<form  action="/series/delete/{{serie.id}}" method="POST" class="card p-2 bg-dark text-light w-50" style="margin: auto;">
 
     <div class="mb-3 text-center">
         <h2 id="marca">{{serie.marca}}</h2>
@@ -13,14 +13,14 @@
     </div>
 
 
-    <h2 class="text-center"> ¿Seguro quieres borrar el elemento? </h2>
+    <h4 class="text-center"> ¿Seguro quieres borrar esta serie? </h4>
 
     <h5 class="m-3 text-center">Esta acción también borrará los vehiculos asociados a esta serie</h5>
 
-    <button class="btn btn-primary bg-black btn-sm rounded-0"  >SI</button>
+    <button class="btn btn-primary bg-blue btn-sm rounded-pill" style="width: 100px; align-self: center;">SI</button>
 
 
-    <a class="btn btn-danger btn-sm rounded-0" href="{{ url_for('series.index') }}">NO</a>
+    <a class="btn btn-danger btn-sm rounded-0 rounded-pill mt-2" style="width: 100px; align-self: center;" href="{{ url_for('series.index') }}">NO</a>
 
 </form>
 

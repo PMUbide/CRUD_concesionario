@@ -2,34 +2,41 @@
 
 {% block body %}
 
-<h1 class="text-white">Update</h1>
+<h1 class="text-white">Update Serie</h1>
 
-<form action="/series/update/{{serie.id}}" method="POST" class="card p-2 bg-dark text-light bg-transparent">
+<form action="/series/update/{{serie.id}}" method="POST" class="card p-2 bg-dark text-light w-50" style="margin: auto;">
 
     {% include 'partials/_message.html' %}
 
+    <div class="row">
+        <div class="col">
+            <div class="mb-3 text-center">
+                <label for="nombre">Introduce nombre</label>
+                <input class="form-control bg-white border-0 text-black text-center" type="text" name="nombre"
+                    placeholder="Introduce tu nombre" value="{{serie.nombre}}" />
 
-    <div class="mb-3 text-center">
-        <h2 id="marca">{{serie.marca}}</h2>
-        <label for="nombre">Introduce nombre</label>
-        <input class="form-control rounded-0 bg-white border-0 text-black text-center" type="text" name="nombre" placeholder="Introduce tu nombre" value="{{serie.nombre}}" />
+            </div>
+        </div>
+        <div class="col">
+            <div class="mb-3 text-center">
+                <label for="marca_id">Introduce Marca</label>
+                <select class="form-control text-center" name="marca_id" required>
+                    <option value="None" selected>Select an Option</option>
+                    {% for marca in marcas %}
+                    <option value='{{marca.id}}'>{{marca.nombre}}</option>
+                    {% endfor %}
+                </select>
 
+            </div>
+        </div>
     </div>
-
-    <div class="mb-3 text-center">
-        <label for="marca_id">Introduce Marca</label>
-        <select class="form-control text-center"  name="marca_id" required >
-            <option value="None" selected >Select an Option</option>
-            {% for marca in marcas %}
-                <option  value='{{marca.id}}' >{{marca.nombre}}</option>
-            {% endfor %}
-        </select>
-
+    <div class="row justify-content-center">
+        <div class="col" style="margin-left: 35%;">
+            <button class="btn btn-primary bg-blue btn-sm">Guardar </button>
+            <a class="btn btn-danger btn-sm" style="height: 31px;" href="/">Cancelar</a>
+        </div>
     </div>
-
-
-    <button class="btn btn-primary bg-black btn-sm rounded-0" >Save</button>
-
 </form>
+
 
 {% endblock %}

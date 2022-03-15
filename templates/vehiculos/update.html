@@ -2,9 +2,10 @@
 
 {% block body %}
 
-<h1 class="text-white">Update</h1>
+<h1 class="text-white">Update Vehiculo</h1>
 
-<form action="/vehiculos/update/{{vehiculo.id}}" method="POST" class="card p-2 bg-dark text-light">
+<form action="/vehiculos/update/{{vehiculo.id}}" method="POST" class="card p-2 bg-dark text-light w-25"
+    style="margin: auto;">
 
     {% include 'partials/_message.html' %}
 
@@ -13,34 +14,37 @@
         <h2 id="marca">{{vehiculo.serie}}</h2>
 
         <label for="matricula">Introduce matricula</label>
-        <input class="form-control rounded-0 bg-white border-0 text-black" type="text" name="matricula" placeholder="Introduce matrícula" value="{{vehiculo.matricula}}" />
+        <input class="form-control rounded-0 bg-white border-0 text-black" type="text" name="matricula"
+            placeholder="Introduce matrícula" value="{{vehiculo.matricula}}" />
 
     </div>
 
-    
+
     <div class="mb-3">
 
         <label for="color">Introduce color</label>
-        <input class="form-control rounded-0 bg-white border-0 text-black" type="text" name="color" placeholder="Introduce color" value="{{vehiculo.color}}" />
+        <input class="form-control rounded-0 bg-white border-0 text-black" type="text" name="color"
+            placeholder="Introduce color" value="{{vehiculo.color}}" />
 
     </div>
 
     <div class="mb-3">
         <label for="serie_id">Introduce serie</label>
-        <select class="form-control"  name="serie_id" required>
+        <select class="form-control" name="serie_id" required>
             <option value="None" selected>Select an Option</option>
             {% for serie in series %}
-                <option value='{{serie.id}}'>{{serie.nombre}} - {{serie.marca}}</option>
-            {% endfor %}    
+            <option value='{{serie.id}}'>{{serie.nombre}} - {{serie.marca}}</option>
+            {% endfor %}
         </select>
-       
+
     </div>
 
-
-    <button class="btn btn-primary bg-black btn-sm rounded-0" >Save</button>
-
-     <a class="btn btn-danger btn-sm rounded-0" href="{{ url_for('vehiculos.index') }}">Cancel</a>
-
+    <div class="row">
+        <div class="col">
+            <button class="btn btn-primary bg-blue btn-sm" style="width: 75px; margin-left: 70px;">Save</button>
+            <a class="btn btn-danger btn-sm" style="width: 75px;" href="{{ url_for('vehiculos.index') }}">Cancel</a>
+        </div>
+    </div>
 </form>
 
 {% endblock %}
