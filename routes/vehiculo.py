@@ -47,7 +47,7 @@ def add():
             flash("Vehículo añadido satisfactoriamente!")
 
             # Función de flask para hacer redirecciones 
-            return redirect(url_for('series.index'))
+            return redirect(url_for('vehiculos.index'))
 
         return redirect(url_for('vehiculos.index')) 
 
@@ -98,8 +98,11 @@ def search_matricula():
     if records != None:
         results.append(records)
 
+    # Creamos una lista que siempre contiene todos los vehículos para el autocompletar de la vista
+    vehiculos_total = Vehiculo.query.all()
+
     # return redirect(url_for('vehiculos.index'))
-    return render_template("vehiculos/index.html", series=series, vehiculos= results)
+    return render_template("vehiculos/index.html", series=series, vehiculos= results, vehiculos_total=vehiculos_total)
 
 
 @vehiculos.route("/vehiculos/busqueda_serie", methods=["POST"])
@@ -113,9 +116,12 @@ def search_serie():
     records = db.session.query(Vehiculo).filter_by(serie_id=serie_busqueda).all()
 
     series = Serie.query.all()
+
+    # Creamos una lista que siempre contiene todos los vehículos para el autocompletar de la vista
+    vehiculos_total = Vehiculo.query.all()
     
     # return redirect(url_for('vehiculos.index'))
-    return render_template("vehiculos/index.html", series=series, vehiculos= records)
+    return render_template("vehiculos/index.html", series=series, vehiculos= records, vehiculos_total=vehiculos_total)
 
 
 # Espera un id 

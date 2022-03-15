@@ -57,8 +57,8 @@
     <div class="col-6 align-self-center">
         <form action="/vehiculos/busqueda_matricula" method="POST" class=" bg-ligth text-dark">
             <div class="mb-3 row cuadro_busqueda">
-                <label for="matricula2" class="col text-dark text-center align-self-center">Busqueda por matrícula </label>
-                <input class="form-control col text-black text-center rounded-pill" type="text" name="matricula2" placeholder="Introduce matrícula" />
+                <label for="matricula2"  class="col text-dark text-center align-self-center">Busqueda por matrícula </label>
+                <input id="tags" class="form-control col text-black text-center rounded-pill" type="text" name="matricula2" placeholder="Introduce matrícula" />
                 
                 <button class="btn btn-secondary col-2 rounded-pill">Buscar</button>
             </div>
@@ -135,18 +135,37 @@
 </div>
 
 
-<!-- <script>
+<script>
     $( function() {
-      var availableTags = [
-          {% for matriculas in vehiculos %}
-              "{{matriculas}}"
-          {% endfor %}
-      ];
-      $( "#tags" ).autocomplete({
-        source: availableTags
-      });
+        var availableTags = [];
+
+        //La primera vez que cargue el index no tiene esa variable de vehiculos total
+        //entonces cargará las matrículas de la lista de vehiculos totales.
+        //Una vez cargué en la vista según la búsqueda tendrá que recurrir a la
+        //variable comodín que contiene todos los vehiculos.
+        {% if vehiculos_total|length == 0 %}
+
+            {% for v in vehiculos %}
+                availableTags.push("{{v.matricula}}")
+            {% endfor %}
+
+        {% else %}
+
+            {% for v in vehiculos_total %}
+                availableTags.push("{{v.matricula}}")
+            {% endfor %}
+
+        {% endif %}
+
+        
+        console.log(availableTags);
+
+        //elemento de la librería que hace el autocompeltado en el input que tenga ese id
+        $( "#tags" ).autocomplete({
+            source: availableTags
+        });
     } );
-</script> -->
+</script>
 
 
 
