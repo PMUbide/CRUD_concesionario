@@ -3,19 +3,26 @@
 {% block body %}
 
 <div class="container mt-3">
-    
-    <form action="/marcas/update/{{marca.id}}" method="POST" class="card p-2 bg-dark text-light w-50" style="margin: auto;">
-        <h1 class="text-whtie text-border-dark" style="margin: auto;">Update</h1>
+
+    <form action="/marcas/update/{{marca.id}}" method="POST" class="card p-2 bg-dark text-light"
+        style="width: 45%; margin: auto;">
+        <h1 class="text-whtie text-border-dark mb-3" style="margin: auto;">Update</h1>
         {% include 'partials/_message.html' %}
-        <div class="mb-3">
-            <label for="nombre">Introduce nuevo nombre</label>
-            <input class="form-control rounded-0 bg-white border-0 text-black" type="text" name="nombre" placeholder="Introduce tu nombre" value="{{marca.nombre}}" />
-    
+        <div class="row justify-content-center  ">
+            <div class="col-lg-7">
+                <label for="nombre">Introduce nuevo nombre</label>
+                <input class="form-control rounded-0 bg-white border-0 text-black" type="text" name="nombre"
+                    placeholder="Introduce tu nombre" value="{{marca.nombre}}" />
+
+            </div>
+            <div class="col-lg mt-4">
+                <button class="btn btn-primary bg-blue btn-sm" style="height: 36px;">Guardar</button>
+            </div>
+            <div class="col-lg mt-4">
+                <a class="btn btn-danger btn-sm" style="height: 36px;" href="/">Cancelar</a>
+            </div>
         </div>
-    
-        <button class="btn btn-primary bg-black btn-sm rounded-0 rounded-pill">Guardar</button>
-    
-       
+
     </form>
 
 </div>

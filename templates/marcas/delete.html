@@ -4,20 +4,19 @@
 
 <h1 class="text-white">Delete</h1>
 
-<form  action="/marcas/delete/{{marca.id}}" method="POST" class="card p-2 bg-dark text-light">
+<form  action="/marcas/delete/{{marca.id}}" method="POST" class="card p-2 bg-dark text-light w-50" style="margin: auto;">
 
-    <div class="mb-3">
+    <div class="mb-3" align='center'>
         <h2 id="marca">{{marca.nombre}}</h2>
-        
-    </div>
-    
-   
-    <h3> ¿Seguro quieres borrar el elemento? </h3>
 
-    <button class="btn btn-primary bg-black btn-sm rounded-0"  >SI</button>
-    
-                    
-    <a class="btn btn-danger btn-sm rounded-0" href="{{ url_for('marcas.index') }}">NO</a>
+    </div>
+
+
+    <h5 align='center'> ¿Seguro quieres borrar el elemento? </h5>
+
+    <button class="btn btn-primary bg-blue btn-sm rounded-0 rounded-pill mt-2" style="width: 100px; align-self: center;">SI</button>
+
+    <a class="btn btn-danger btn-sm rounded-0 rounded-pill mt-2" style="width: 100px; align-self: center;" href="{{ url_for('marcas.index') }}">NO</a>
 
 </form>
 

@@ -1,31 +1,30 @@
-
 {% extends 'layout.html' %}
 
 {% block body %}
 
 <h1 class="text-white">Update</h1>
 
-<form action="/series/update/{{serie.id}}" method="POST" class="card p-2 bg-dark text-light">
+<form action="/series/update/{{serie.id}}" method="POST" class="card p-2 bg-dark text-light bg-transparent">
 
     {% include 'partials/_message.html' %}
 
 
-    <div class="mb-3">
+    <div class="mb-3 text-center">
         <h2 id="marca">{{serie.marca}}</h2>
         <label for="nombre">Introduce nombre</label>
-        <input class="form-control rounded-0 bg-white border-0 text-black" type="text" name="nombre" placeholder="Introduce tu nombre" value="{{serie.nombre}}" />
+        <input class="form-control rounded-0 bg-white border-0 text-black text-center" type="text" name="nombre" placeholder="Introduce tu nombre" value="{{serie.nombre}}" />
 
     </div>
 
-    <div class="mb-3">
+    <div class="mb-3 text-center">
         <label for="marca_id">Introduce Marca</label>
-        <select class="form-control"  name="marca_id" required >
+        <select class="form-control text-center"  name="marca_id" required >
             <option value="None" selected >Select an Option</option>
             {% for marca in marcas %}
                 <option  value='{{marca.id}}' >{{marca.nombre}}</option>
-            {% endfor %}    
+            {% endfor %}
         </select>
-       
+
     </div>
 
 
