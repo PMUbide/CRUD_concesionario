@@ -10,9 +10,7 @@
 
     <div class="col-md-6 ">
 
-
         {% include 'partials/_message.html' %}
-
 
         <form action="/series/new" method="POST" class="card p-2 bg-dark text-light text-center ">
 
@@ -25,7 +23,6 @@
                 <input class="form-control rounded-0 bg-dark border-0 text-white text-center" type="text" name="nombre" placeholder="Introduce nombre" />
             </div>
 
-
             <div class="mb-3 ">
                 <label for="nombre">Elige la marca </label>
                 <!-- <input class="form-control rounded-0 bg-dark border-0 text-white" type="text" name="nombre" placeholder="Introduce tu nombre" /> -->
@@ -35,20 +32,14 @@
                     {% endfor %}    
                 </select>
             </div>
-
             
             <button class="btn-primary rounded-pill">Guardar</button>
             
         </form>
-    
         
-              <br>
+        <br>
           
     </div>
-
-
-    
-    
 
     <div class="col-md-12">
                 
@@ -60,30 +51,16 @@
                 <th>Borrar registro</th> 
             </tr>
 
-
         <!--MOTOR que usa Flask para esto es NINJA, usa formato liquid-->
+        <!-- recorremos las series  -->
         {% for serie in series %}
 
-        <tr>
-            <td> <span class="">{{serie.nombre}}</span> </td>
-
-            <td><span >{{serie.marca}}</span></td>
-
-            <td><a href="{{ url_for('series.update',  id=serie.id) }}"><i class="bg-primary text-dark fas fa-wrench "></i></a></td>
-
-            <td><a  href="{{ url_for('series.delete',  id=serie.id) }}"><i class="fas fa-trash-alt bg-danger text-dark"></i></a></td>
-
-
-
-
-        </tr>
-
-
-
-
-
-
-
+            <tr>
+                <td><span class="">{{serie.nombre}}</span> </td>
+                <td><span>{{serie.marca}}</span></td>
+                <td><a href="{{ url_for('series.update',  id=serie.id) }}"><i class="bg-primary text-dark fas fa-wrench"></i></a></td>
+                <td><a  href="{{ url_for('series.delete',  id=serie.id) }}"><i class="fas fa-trash-alt bg-danger text-dark"></i></a></td>
+            </tr>
 
         {% endfor %}
 
@@ -91,10 +68,6 @@
   
     </div>
 
-
-
 </div>
-
-
 
 {% endblock %}

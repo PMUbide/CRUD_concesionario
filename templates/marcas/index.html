@@ -3,13 +3,8 @@
 {% block body %}
 
 
-
 <div class="row justify-content-center" style="margin-top: 25px;">
-
     <div class="col-6">
-
-    
-
         <form id="formularioMarcas" action="marcas/new" method="POST" class="card p-2 bg-transparent text-light  ">
             <div class="row">
                 <div class="col">
@@ -22,30 +17,29 @@
                 </div>
             </div>
         </form>
-
         <!--Comprueba si hay una variable flash con mensage!-->
         {% include 'partials/_message.html' %}
     </div>
 
     <div class="row justify-content-center">
-
         
         <!--MOTOR que usa Flask para esto es NINJA, usa formato liquid-->
+        <!-- recorremos las marcas con un bucle for -->
         {% for marca in marcas %}
 
             <div class="card mb-1 text-white bg-dark" style="width: 800px;">
                 <div class="card-body">
                     <div class="d-flex justify-content-between">
+                        <!-- se recoge la variable y sus atributos -->
                         <h5><u>{{marca.nombre}}</u></h5>
-
-
                         <div>
-                            <!--Función para llamar directamente a la función update del blueprint-->
+                            <!--Función para llamar directamente a la función update asociada al blueprint-->
                             <a class="fas fa-wrench text-primary" href="/marcas/update/{{marca.id}}"></a>
                             <a class="fas fa-trash-alt text-danger" href="/marcas/delete/{{marca.id}}"></a>
                         </div>
                     </div>
                     <ul class="navbar-nav ms-auto pl-2">
+                        <!-- recorremos las series con un bucle for -->
                         {% for s in marca.series %}
                             <li class="nav-item"> - {{s.nombre}}</li>
                         {% endfor %}
@@ -57,10 +51,6 @@
 
     </div>
 
-
-
 </div>
-
-
 
 {% endblock %}
