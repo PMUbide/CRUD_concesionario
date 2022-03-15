@@ -1,11 +1,10 @@
 # De util.db importa el db para pasarle el modelo.
 from utils.db import db
 
-
 class Serie(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(100))
-    #specify which property is the foreign key in a relationship
+    # Se especifica que propiedad es la clave foránea en  la relación
     marca_id = db.Column(db.Integer, db.ForeignKey('marca.id'))
     #Relación con tabla-child - borrará todos los vehiculos de la serie al borrar la serie
     vehiculos = db.relationship("Vehiculo", backref="serie", cascade="all, delete-orphan")

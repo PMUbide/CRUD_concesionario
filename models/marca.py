@@ -4,6 +4,7 @@ from utils.db import db
 class Marca(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(100),  unique=True)
+    # Relación tabla con la clase de Serie
     series = db.relationship("Serie", backref="marca")
 
     def __init__(self, nombre):

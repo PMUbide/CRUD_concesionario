@@ -3,11 +3,12 @@ from utils.db import db
 
 
 class Vehiculo(db.Model):
+    # opción de sqlalchemy para mejorar el motor de búsqueda.
     __searchable__ = ['matricula']
     id = db.Column(db.Integer, primary_key=True)
     matricula = db.Column(db.String(100))
     color = db.Column(db.String(100))
-    #specify which property is the foreign key in a relationship
+    # Especificamos que propiedad es la foreign key en la relación
     serie_id = db.Column(db.Integer, db.ForeignKey('serie.id'))
 
     def __init__(self, matricula, color):
